@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} Sentiment Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome To Sentiment Analyzer</h1>
+        </header>
+        <main>
+            <form method="POST">
+                <textarea name="text1" placeholder="Say Something: ...." rows="10" cols="80"></textarea><br><br>
+                <input class="submit_button" type="submit" value="Analyze">
+            </form>
+            {% if final %}
+                {% if final >= 0.5 %}
+                    <div class="result">
+                        <img src="https://cdn4.iconfinder.com/data/icons/smileys-14/32/face_positive_smiley_smile-512.png" alt="Positive Icon">
+                        <h2>The Sentiment of '{{ text1 }}' is {{ final }}% Positive!</h2>
+                    </div>
+                {% else %}
+                    <div class="result">
+                        <img src="https://cdn3.iconfinder.com/data/icons/review-and-feedback-2/512/Review_Feedback_negative_review-512.png" alt="Negative Icon">
+                        <h2>The Sentiment of '{{ text1 }}' is {{ final }}% Negative!</h2>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="result"></div>
+            {% endif %}
+        </main>
+        <footer>
+            <img src="https://numlabs.com/static/img/posts/twarze-pos-neg.jpg" alt="Footer Logo">
+        </footer>
+    </div>
+</body>
+</html>
